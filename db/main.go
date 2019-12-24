@@ -12,6 +12,7 @@ func Connect() {
 		User: "cavdy",
 		Password: "postgres",
 		Addr: "localhost:5432",
+		Database: "go_pg",
 	}
 
 	var db *pg.DB = pg.Connect(opts)
@@ -20,6 +21,7 @@ func Connect() {
 		os.Exit(100)
 	}
 	log.Printf("Connected to db")
+	CreateProdItemTable(db)
 	closeError := db.Close();
 
 	if closeError != nil {
